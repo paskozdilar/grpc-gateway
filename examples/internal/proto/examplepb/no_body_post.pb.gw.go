@@ -41,7 +41,7 @@ func request_NoBodyPostService_RpcEmptyRpc_0(ctx context.Context, marshaler runt
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	go io.Copy(io.Discard, req.Body)
 	msg, err := client.RpcEmptyRpc(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -60,7 +60,7 @@ func request_NoBodyPostService_RpcEmptyStream_0(ctx context.Context, marshaler r
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	go io.Copy(io.Discard, req.Body)
 	stream, err := client.RpcEmptyStream(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
