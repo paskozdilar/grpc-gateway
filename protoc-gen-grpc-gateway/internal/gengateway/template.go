@@ -382,7 +382,13 @@ var filter_{{ .Method.Service.GetName }}_{{ .Method.GetName }}_{{ .Index }} = {{
 	}
 	{{- end }}
 {{- else }}
-    go io.Copy(io.Discard, req.Body)
+    wg := sync.WaitGroup{}
+    defer wg.Wait()
+    wg.Add(1)
+    go func() {
+        defer wg.Done()
+        io.Copy(io.Discard, req.Body)
+    }()
 {{- end }}
 {{- if .PathParams }}
 	{{- $binding := . }}
