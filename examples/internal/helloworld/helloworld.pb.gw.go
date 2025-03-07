@@ -43,11 +43,10 @@ func request_Greeter_SayHello_0(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["name"]
@@ -100,11 +99,10 @@ func request_Greeter_SayHello_1(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["strVal"]
@@ -157,11 +155,10 @@ func request_Greeter_SayHello_2(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["floatVal"]
@@ -214,11 +211,10 @@ func request_Greeter_SayHello_3(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["doubleVal"]
@@ -271,11 +267,10 @@ func request_Greeter_SayHello_4(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["boolVal"]
@@ -328,11 +323,10 @@ func request_Greeter_SayHello_5(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["bytesVal"]
@@ -385,11 +379,10 @@ func request_Greeter_SayHello_6(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["int32Val"]
@@ -442,11 +435,10 @@ func request_Greeter_SayHello_7(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uint32Val"]
@@ -499,11 +491,10 @@ func request_Greeter_SayHello_8(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["int64Val"]
@@ -556,11 +547,10 @@ func request_Greeter_SayHello_9(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uint64Val"]

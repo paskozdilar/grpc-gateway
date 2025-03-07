@@ -40,11 +40,10 @@ func request_FlowCombination_RpcEmptyRpc_0(ctx context.Context, marshaler runtim
 		protoReq EmptyProto
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.RpcEmptyRpc(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -65,11 +64,10 @@ func request_FlowCombination_RpcEmptyStream_0(ctx context.Context, marshaler run
 		protoReq EmptyProto
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	stream, err := client.RpcEmptyStream(ctx, &protoReq)
@@ -198,11 +196,10 @@ func request_FlowCombination_RpcBodyRpc_1(ctx context.Context, marshaler runtime
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a"]
@@ -274,11 +271,10 @@ func request_FlowCombination_RpcBodyRpc_2(ctx context.Context, marshaler runtime
 		protoReq NonEmptyProto
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -466,11 +462,10 @@ func request_FlowCombination_RpcBodyRpc_6(ctx context.Context, marshaler runtime
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a"]
@@ -523,11 +518,10 @@ func request_FlowCombination_RpcPathSingleNestedRpc_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a.str"]
@@ -652,11 +646,10 @@ func request_FlowCombination_RpcPathNestedRpc_1(ctx context.Context, marshaler r
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a.str"]
@@ -783,11 +776,10 @@ func request_FlowCombination_RpcBodyStream_1(ctx context.Context, marshaler runt
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a"]
@@ -833,11 +825,10 @@ func request_FlowCombination_RpcBodyStream_2(ctx context.Context, marshaler runt
 		protoReq NonEmptyProto
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -968,11 +959,10 @@ func request_FlowCombination_RpcBodyStream_6(ctx context.Context, marshaler runt
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a"]
@@ -1009,11 +999,10 @@ func request_FlowCombination_RpcPathSingleNestedStream_0(ctx context.Context, ma
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a.str"]
@@ -1095,11 +1084,10 @@ func request_FlowCombination_RpcPathNestedStream_1(ctx context.Context, marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["a.str"]

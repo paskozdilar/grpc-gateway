@@ -382,11 +382,10 @@ var filter_{{ .Method.Service.GetName }}_{{ .Method.GetName }}_{{ .Index }} = {{
 	}
 	{{- end }}
 {{- else }}
-    wg := sync.WaitGroup{}
-    defer wg.Wait()
-    wg.Add(1)
+    ch := make(chan struct{})
+	defer func() { <-ch }()
     go func() {
-        defer wg.Done()
+		defer func() { ch <- struct{}{} }()
         io.Copy(io.Discard, req.Body)
     }()
 {{- end }}

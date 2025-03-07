@@ -49,11 +49,10 @@ func request_ABitOfEverythingService_Create_0(ctx context.Context, marshaler run
 		e        int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["float_value"]
@@ -559,11 +558,10 @@ func request_ABitOfEverythingService_Lookup_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -604,11 +602,10 @@ func request_ABitOfEverythingService_Custom_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -661,11 +658,10 @@ func request_ABitOfEverythingService_DoubleColon_0(ctx context.Context, marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -934,11 +930,10 @@ func request_ABitOfEverythingService_Delete_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -979,11 +974,10 @@ func request_ABitOfEverythingService_GetQuery_0(ctx context.Context, marshaler r
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -1035,11 +1029,10 @@ func request_ABitOfEverythingService_GetRepeatedQuery_0(ctx context.Context, mar
 		es       []int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["path_repeated_float_value"]
@@ -1329,11 +1322,10 @@ func request_ABitOfEverythingService_Echo_0(ctx context.Context, marshaler runti
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["value"]
@@ -1397,11 +1389,10 @@ func request_ABitOfEverythingService_Echo_2(ctx context.Context, marshaler runti
 		protoReq sub.StringMessage
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -1476,11 +1467,10 @@ func request_ABitOfEverythingService_Timeout_0(ctx context.Context, marshaler ru
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.Timeout(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -1501,11 +1491,10 @@ func request_ABitOfEverythingService_ErrorWithDetails_0(ctx context.Context, mar
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.ErrorWithDetails(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -1613,11 +1602,10 @@ func request_ABitOfEverythingService_CheckGetQueryParams_0(ctx context.Context, 
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["single_nested.name"]
@@ -1671,11 +1659,10 @@ func request_ABitOfEverythingService_CheckNestedEnumGetQueryParams_0(ctx context
 		e        int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["single_nested.ok"]
@@ -1816,11 +1803,10 @@ func request_ABitOfEverythingService_OverwriteResponseContentType_0(ctx context.
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.OverwriteResponseContentType(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -1843,11 +1829,10 @@ func request_ABitOfEverythingService_CheckExternalPathEnum_0(ctx context.Context
 		e        int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["value"]
@@ -1890,11 +1875,10 @@ func request_ABitOfEverythingService_CheckExternalNestedPathEnum_0(ctx context.C
 		e        int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["value"]
@@ -1935,11 +1919,10 @@ func request_ABitOfEverythingService_CheckStatus_0(ctx context.Context, marshale
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.CheckStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -1963,11 +1946,10 @@ func request_ABitOfEverythingService_Exists_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -2020,11 +2002,10 @@ func request_ABitOfEverythingService_CustomOptionsRequest_0(ctx context.Context,
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -2077,11 +2058,10 @@ func request_ABitOfEverythingService_TraceRequest_0(ctx context.Context, marshal
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["uuid"]
@@ -2189,11 +2169,10 @@ func request_CamelCaseServiceName_Empty_0(ctx context.Context, marshaler runtime
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.Empty(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -2216,11 +2195,10 @@ func request_SnakeEnumService_SnakeEnum_0(ctx context.Context, marshaler runtime
 		e        int32
 		err      error
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["who"]

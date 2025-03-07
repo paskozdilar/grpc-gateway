@@ -41,11 +41,10 @@ func request_NoBodyPostService_RpcEmptyRpc_0(ctx context.Context, marshaler runt
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.RpcEmptyRpc(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -66,11 +65,10 @@ func request_NoBodyPostService_RpcEmptyStream_0(ctx context.Context, marshaler r
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	wg := sync.WaitGroup{}
-	defer wg.Wait()
-	wg.Add(1)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
 	go func() {
-		defer wg.Done()
+		defer func() { ch <- struct{}{} }()
 		io.Copy(io.Discard, req.Body)
 	}()
 	stream, err := client.RpcEmptyStream(ctx, &protoReq)
