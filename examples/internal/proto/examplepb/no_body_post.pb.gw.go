@@ -88,7 +88,12 @@ func request_NoBodyPostService_RpcEmptyRpcWithResponse_0(ctx context.Context, ma
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
+	go func() {
+		defer func() { ch <- struct{}{} }()
+		io.Copy(io.Discard, req.Body)
+	}()
 	msg, err := client.RpcEmptyRpcWithResponse(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -107,7 +112,12 @@ func request_NoBodyPostService_RpcEmptyStreamWithResponse_0(ctx context.Context,
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	ch := make(chan struct{})
+	defer func() { <-ch }()
+	go func() {
+		defer func() { ch <- struct{}{} }()
+		io.Copy(io.Discard, req.Body)
+	}()
 	stream, err := client.RpcEmptyStreamWithResponse(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
