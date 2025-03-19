@@ -41,10 +41,10 @@ func request_ResponseBodyService_GetResponseBody_0(ctx context.Context, marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["data"]
@@ -83,10 +83,10 @@ func request_ResponseBodyService_ListResponseBodies_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["data"]
@@ -125,10 +125,10 @@ func request_ResponseBodyService_ListResponseStrings_0(ctx context.Context, mars
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["data"]
@@ -167,10 +167,10 @@ func request_ResponseBodyService_GetResponseBodyStream_0(ctx context.Context, ma
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["data"]

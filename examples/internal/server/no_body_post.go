@@ -43,7 +43,8 @@ func (s noBodyPostServer) RpcEmptyStream(req *emptypb.Empty, stream grpc.ServerS
 
 func (s noBodyPostServer) RpcEmptyRpcWithResponse(ctx context.Context, req *emptypb.Empty) (*emptypb.Empty, error) {
 	noBodyPost_contextChRPC <- ctx
-	return &emptypb.Empty{}, nil
+	<-ctx.Done()
+	return nil, status.Error(codes.Canceled, "context canceled")
 }
 
 func (s noBodyPostServer) RpcEmptyStreamWithResponse(req *emptypb.Empty, stream grpc.ServerStreamingServer[emptypb.Empty]) error {

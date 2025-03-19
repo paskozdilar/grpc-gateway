@@ -43,10 +43,10 @@ func request_VisibilityRuleEchoService_Echo_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -98,10 +98,10 @@ func request_VisibilityRuleEchoService_EchoInternal_0(ctx context.Context, marsh
 		protoReq VisibilityRuleSimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -136,10 +136,10 @@ func request_VisibilityRuleEchoService_EchoPreview_0(ctx context.Context, marsha
 		protoReq VisibilityRuleSimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -174,10 +174,10 @@ func request_VisibilityRuleEchoService_EchoInternalAndPreview_0(ctx context.Cont
 		protoReq VisibilityRuleSimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -213,10 +213,10 @@ func request_VisibilityRuleInternalEchoService_Echo_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]

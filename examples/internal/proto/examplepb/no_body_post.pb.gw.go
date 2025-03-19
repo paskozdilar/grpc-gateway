@@ -41,10 +41,10 @@ func request_NoBodyPostService_RpcEmptyRpc_0(ctx context.Context, marshaler runt
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.RpcEmptyRpc(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -65,10 +65,10 @@ func request_NoBodyPostService_RpcEmptyStream_0(ctx context.Context, marshaler r
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	stream, err := client.RpcEmptyStream(ctx, &protoReq)
@@ -88,10 +88,10 @@ func request_NoBodyPostService_RpcEmptyRpcWithResponse_0(ctx context.Context, ma
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	msg, err := client.RpcEmptyRpcWithResponse(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -112,10 +112,10 @@ func request_NoBodyPostService_RpcEmptyStreamWithResponse_0(ctx context.Context,
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	stream, err := client.RpcEmptyStreamWithResponse(ctx, &protoReq)

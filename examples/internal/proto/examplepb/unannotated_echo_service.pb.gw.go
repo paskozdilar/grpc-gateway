@@ -43,10 +43,10 @@ func request_UnannotatedEchoService_Echo_0(ctx context.Context, marshaler runtim
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -99,10 +99,10 @@ func request_UnannotatedEchoService_Echo_1(ctx context.Context, marshaler runtim
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -194,10 +194,10 @@ func request_UnannotatedEchoService_EchoDelete_0(ctx context.Context, marshaler 
 		protoReq UnannotatedSimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {

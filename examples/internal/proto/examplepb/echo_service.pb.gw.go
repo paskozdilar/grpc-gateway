@@ -43,10 +43,10 @@ func request_EchoService_Echo_0(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -99,10 +99,10 @@ func request_EchoService_Echo_1(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -171,10 +171,10 @@ func request_EchoService_Echo_2(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -269,10 +269,10 @@ func request_EchoService_Echo_3(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["id"]
@@ -367,10 +367,10 @@ func request_EchoService_Echo_4(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["no.note"]
@@ -423,10 +423,10 @@ func request_EchoService_Echo_5(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["resource_id"]
@@ -479,10 +479,10 @@ func request_EchoService_Echo_6(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	val, ok := pathParams["n_id.n_id"]
@@ -624,10 +624,10 @@ func request_EchoService_EchoDelete_0(ctx context.Context, marshaler runtime.Mar
 		protoReq SimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -722,10 +722,10 @@ func request_EchoService_EchoUnauthorized_0(ctx context.Context, marshaler runti
 		protoReq SimpleMessage
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {

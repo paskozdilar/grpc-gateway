@@ -382,10 +382,10 @@ var filter_{{ .Method.Service.GetName }}_{{ .Method.GetName }}_{{ .Index }} = {{
 	}
 	{{- end }}
 {{- else }}
-    ch := make(chan struct{})
-	defer func() { <-ch }()
+    done := make(chan struct{})
+    defer func() { <-done }()
     go func() {
-		defer func() { ch <- struct{}{} }()
+        defer close(done)
         io.Copy(io.Discard, req.Body)
     }()
 {{- end }}

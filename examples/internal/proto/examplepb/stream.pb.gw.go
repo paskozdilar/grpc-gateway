@@ -85,10 +85,10 @@ func request_StreamService_List_0(ctx context.Context, marshaler runtime.Marshal
 		protoReq Options
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
@@ -202,10 +202,10 @@ func request_StreamService_Download_0(ctx context.Context, marshaler runtime.Mar
 		protoReq Options
 		metadata runtime.ServerMetadata
 	)
-	ch := make(chan struct{})
-	defer func() { <-ch }()
+	done := make(chan struct{})
+	defer func() { <-done }()
 	go func() {
-		defer func() { ch <- struct{}{} }()
+		defer close(done)
 		io.Copy(io.Discard, req.Body)
 	}()
 	if err := req.ParseForm(); err != nil {
