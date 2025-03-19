@@ -41,7 +41,6 @@ func request_NoBodyPostService_RpcEmptyRpc_0(ctx context.Context, marshaler runt
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	go io.Copy(io.Discard, req.Body)
 	msg, err := client.RpcEmptyRpc(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -60,7 +59,6 @@ func request_NoBodyPostService_RpcEmptyStream_0(ctx context.Context, marshaler r
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	go io.Copy(io.Discard, req.Body)
 	stream, err := client.RpcEmptyStream(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -78,7 +76,6 @@ func request_NoBodyPostService_RpcEmptyRpcWithResponse_0(ctx context.Context, ma
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	go io.Copy(io.Discard, req.Body)
 	msg, err := client.RpcEmptyRpcWithResponse(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -97,7 +94,6 @@ func request_NoBodyPostService_RpcEmptyStreamWithResponse_0(ctx context.Context,
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	go io.Copy(io.Discard, req.Body)
 	stream, err := client.RpcEmptyStreamWithResponse(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -118,7 +114,6 @@ func request_NoBodyPostService_RpcEmptyRpcWithBody_0(ctx context.Context, marsha
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	go io.Copy(io.Discard, req.Body)
 	msg, err := client.RpcEmptyRpcWithBody(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -143,7 +138,6 @@ func request_NoBodyPostService_RpcEmptyStreamWithBody_0(ctx context.Context, mar
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	go io.Copy(io.Discard, req.Body)
 	stream, err := client.RpcEmptyStreamWithBody(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err

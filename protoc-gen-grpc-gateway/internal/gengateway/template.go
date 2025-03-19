@@ -382,7 +382,6 @@ var filter_{{ .Method.Service.GetName }}_{{ .Method.GetName }}_{{ .Index }} = {{
 	}
 	{{- end }}
 {{- end }}
-    go io.Copy(io.Discard, req.Body)
 {{- if .PathParams }}
 	{{- $binding := . }}
 	{{- range $index, $param := .PathParams }}
