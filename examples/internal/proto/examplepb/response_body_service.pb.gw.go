@@ -41,12 +41,7 @@ func request_ResponseBodyService_GetResponseBody_0(ctx context.Context, marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["data"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "data")
@@ -83,12 +78,7 @@ func request_ResponseBodyService_ListResponseBodies_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["data"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "data")
@@ -125,12 +115,7 @@ func request_ResponseBodyService_ListResponseStrings_0(ctx context.Context, mars
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["data"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "data")
@@ -167,12 +152,7 @@ func request_ResponseBodyService_GetResponseBodyStream_0(ctx context.Context, ma
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["data"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "data")

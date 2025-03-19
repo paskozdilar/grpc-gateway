@@ -381,14 +381,8 @@ var filter_{{ .Method.Service.GetName }}_{{ .Method.GetName }}_{{ .Index }} = {{
 			}
 	}
 	{{- end }}
-{{- else }}
-    done := make(chan struct{})
-    defer func() { <-done }()
-    go func() {
-        defer close(done)
-        io.Copy(io.Discard, req.Body)
-    }()
 {{- end }}
+    go io.Copy(io.Discard, req.Body)
 {{- if .PathParams }}
 	{{- $binding := . }}
 	{{- range $index, $param := .PathParams }}

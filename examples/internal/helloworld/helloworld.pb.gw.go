@@ -43,12 +43,7 @@ func request_Greeter_SayHello_0(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
@@ -99,12 +94,7 @@ func request_Greeter_SayHello_1(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["strVal"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "strVal")
@@ -155,12 +145,7 @@ func request_Greeter_SayHello_2(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["floatVal"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "floatVal")
@@ -211,12 +196,7 @@ func request_Greeter_SayHello_3(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["doubleVal"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "doubleVal")
@@ -267,12 +247,7 @@ func request_Greeter_SayHello_4(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["boolVal"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "boolVal")
@@ -323,12 +298,7 @@ func request_Greeter_SayHello_5(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["bytesVal"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "bytesVal")
@@ -379,12 +349,7 @@ func request_Greeter_SayHello_6(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["int32Val"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "int32Val")
@@ -435,12 +400,7 @@ func request_Greeter_SayHello_7(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["uint32Val"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "uint32Val")
@@ -491,12 +451,7 @@ func request_Greeter_SayHello_8(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["int64Val"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "int64Val")
@@ -547,12 +502,7 @@ func request_Greeter_SayHello_9(ctx context.Context, marshaler runtime.Marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	done := make(chan struct{})
-	defer func() { <-done }()
-	go func() {
-		defer close(done)
-		io.Copy(io.Discard, req.Body)
-	}()
+	go io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["uint64Val"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "uint64Val")
