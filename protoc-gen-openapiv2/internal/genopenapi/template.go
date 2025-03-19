@@ -2,6 +2,7 @@ package genopenapi
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"math"
@@ -517,6 +518,25 @@ func renderMessageAsDefinition(msg *descriptor.Message, reg *descriptor.Registry
 			Type: "object",
 		},
 	}
+
+	if reg.GetGenerateXGoType() && msg.File.GoPkg.Path != "" {
+		if schema.extensions == nil {
+			schema.extensions = []extension{}
+		}
+		goTypeName := msg.GetName()
+
+		goTypeName = casing.JSONCamelCase(goTypeName)
+		schema.extensions = append(schema.extensions, extension{
+			key: "x-go-type",
+			value: json.RawMessage(`{
+                "import": {
+                    "package": "` + msg.File.GoPkg.Path + `"
+                },
+                "type": "` + goTypeName + `"
+            }`),
+		})
+	}
+
 	msgComments := protoComments(reg, msg.File, msg.Outers, "MessageType", int32(msg.Index))
 	if err := updateOpenAPIDataFromComments(reg, &schema, msg, msgComments, false); err != nil {
 		return openapiSchemaObject{}, err
@@ -848,6 +868,9 @@ func schemaOfField(f *descriptor.Field, reg *descriptor.Registry, refs refMap) o
 			ret.Required[i] = reg.FieldName(f)
 		}
 	}
+
+	slices.Sort(ret.Required)
+	ret.Required = slices.Compact(ret.Required)
 
 	if reg.GetProto3OptionalNullable() && f.GetProto3Optional() {
 		ret.XNullable = true
@@ -1697,6 +1720,11 @@ func renderServices(services []*descriptor.Service, paths *openapiPathsObject, r
 					return err
 				}
 
+				// Set Tag with the user-defined service name
+				if svcOpts.GetName() != "" {
+					operationObject.Tags = []string{svcOpts.GetName()}
+				}
+
 				opts, err := getMethodOpenAPIOption(reg, meth)
 				if opts != nil {
 					if err != nil {
@@ -1717,8 +1745,6 @@ func renderServices(services []*descriptor.Service, paths *openapiPathsObject, r
 					if len(opts.Tags) > 0 {
 						operationObject.Tags = make([]string, len(opts.Tags))
 						copy(operationObject.Tags, opts.Tags)
-					} else if svcOpts.GetName() != "" {
-						operationObject.Tags = []string{svcOpts.GetName()}
 					}
 					if opts.OperationId != "" {
 						operationObject.OperationID = opts.OperationId
@@ -3156,21 +3182,29 @@ func updateswaggerObjectFromJSONSchema(s *openapiSchemaObject, j *openapi_option
 }
 
 func updateSwaggerObjectFromFieldBehavior(s *openapiSchemaObject, j []annotations.FieldBehavior, reg *descriptor.Registry, field *descriptor.Field) {
+	required := false
+	if reg.GetUseProto3FieldSemantics() {
+		required = !field.GetProto3Optional()
+	}
 	for _, fb := range j {
 		switch fb {
 		case annotations.FieldBehavior_REQUIRED:
-			if reg.GetUseJSONNamesForFields() {
-				s.Required = append(s.Required, *field.JsonName)
-			} else {
-				s.Required = append(s.Required, *field.Name)
-			}
+			required = true
 		case annotations.FieldBehavior_OUTPUT_ONLY:
 			s.ReadOnly = true
 		case annotations.FieldBehavior_FIELD_BEHAVIOR_UNSPECIFIED:
 		case annotations.FieldBehavior_OPTIONAL:
+			required = false
 		case annotations.FieldBehavior_INPUT_ONLY:
 			// OpenAPI v3 supports a writeOnly property, but this is not supported in Open API v2
 		case annotations.FieldBehavior_IMMUTABLE:
+		}
+	}
+	if required {
+		if reg.GetUseJSONNamesForFields() {
+			s.Required = append(s.Required, *field.JsonName)
+		} else {
+			s.Required = append(s.Required, *field.Name)
 		}
 	}
 }

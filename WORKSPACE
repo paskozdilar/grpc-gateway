@@ -35,17 +35,17 @@ http_archive(
 # Define before rules_proto, otherwise we receive the version of com_google_protobuf from there
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "008a11cc56f9b96679b4c285fd05f46d317d685be3ab524b2a310be0fbad987e",
-    strip_prefix = "protobuf-29.3",
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/v29.3.tar.gz"],
+    sha256 = "1451b03faec83aed17cdc71671d1bbdfd72e54086b827f5f6fd02bf7a4041b68",
+    strip_prefix = "protobuf-30.1",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v30.1.tar.gz"],
 )
 
 http_archive(
     name = "googleapis",
-    sha256 = "371b92e45a9f4d08542b501015328c253ff728a5f746255b81273ecb6a452651",
-    strip_prefix = "googleapis-df58085901d8fb80c2c021e405923bb2351a6f29",
+    sha256 = "bc06e2de7dac791e5aea1a9e5a42ccc7fdf670c80f7aca690c39bfafa3dd7df6",
+    strip_prefix = "googleapis-803b23488149d2d00725edc52d8a6498b6ab0fec",
     urls = [
-        "https://github.com/googleapis/googleapis/archive/df58085901d8fb80c2c021e405923bb2351a6f29.zip",
+        "https://github.com/googleapis/googleapis/archive/803b23488149d2d00725edc52d8a6498b6ab0fec.zip",
     ],
 )
 
